@@ -21,7 +21,7 @@ const Input = ({label, type='text', ...props}) => {
     return (    
         <label className=" relative flex bg-zinc-50 border rounded-sm focus-within:border-gray-400">
             <input type={inputType} className={classNames({
-                "px-2 text-xs  outline-none  w-full h-[38px]": true,
+                "px-2 text-xs bg-transparent outline-none  w-full h-[38px]": true,
                 "pt-[10px]" : field.value,
             })} {...field} {...props} />
             <small className={classNames({

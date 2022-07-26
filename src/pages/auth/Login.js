@@ -3,16 +3,22 @@ import React from 'react'
 import { useEffect, useRef } from "react"
 import Input from "components/Input"
 import {AiFillFacebook} from 'react-icons/ai'
-import { useNavigate, useLocation } from 'react-router-dom'
+import {  useLocation, Link, Navigate } from 'react-router-dom'
 import { login } from 'firebase.js'
 import { Formik, Form } from 'formik'
+import Button from 'components/Button'
+import Divider from 'components/Divider'
+import { useSelector } from 'react-redux'
 // import { LoginSchema } from 'validation'
 
 const Login = () => {
   const ref = useRef(null)
 
-  const navigate = useNavigate()
+
   const location = useLocation()
+  const user = useSelector(state => state.auth.user)
+
+
 
 
   useEffect(() => {
@@ -33,12 +39,13 @@ const Login = () => {
   }, [ref])
   
 
+  if (user) {
+		return <Navigate to={location.state?.return_url || '/'} replace={true} />
+	}
+
   const handleSubmit = async (values, actions)=>{
-      await login(values.userName, values.password)
-     
-      navigate(location.state?.return_url || '/', {
-        replace: true
-      })
+     await login(values.userName, values.password)
+  
   }
 
   return (
@@ -70,12 +77,9 @@ const Login = () => {
 
                               <Input name="userName" label="Phone number, username or email" />
                               <Input type="password" name="password" label="Password" />
-                              <button disabled={!isValid || !dirty || isSubmitting} type="submit" className="h-[30px] mt-1 rounded bg-brand text-white text-sm font-semibold disabled:opacity-50">Log In</button>
-                                              <div className="flex items-center my-2.5 mb-3.5">
-                                                  <div className="h-px bg-gray-300 flex-1" />
-                                                  <span className="px-4 text-[13px] text-gray-500 font-semibold">OR</span>
-                                                  <div className="h-px bg-gray-300 flex-1" />
-                                              </div>
+                              <Button
+                              disabled={!isValid || !dirty || isSubmitting} type="submit">Log In</Button>
+                                          <Divider/> 
                                               <a href="#" className="flex justify-center mb-2.5 items-center gap-x-2 text-sm font-semibold text-facebook">
                                                 <AiFillFacebook size={20} />
                                                 Log in with Facebook
@@ -89,7 +93,7 @@ const Login = () => {
                         </div>
 
                         <div className="bg-white border p-4 text-sm text-center">
-                          Don't have an account? <a href="#" className="font-semibold text-brand">Sign up</a>
+                          Don't have an account? <Link to="/auth/register" className="font-semibold text-brand">Sign up</Link>
                         </div>
                   </div>
               </>
