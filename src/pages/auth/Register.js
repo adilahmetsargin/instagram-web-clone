@@ -7,6 +7,7 @@ import {  register } from 'firebase.js'
 import { Formik, Form } from 'formik'
 import Button from 'components/Button'
 import Divider from 'components/Divider'
+import Helmet from 'react-helmet'
 // import { RegisterSchema } from '../../validation/register-schema'
 
 const Register = () => {
@@ -27,17 +28,19 @@ const Register = () => {
   return (
             <>
               <div className="w-[350px] grid gap-y-3">
+                <Helmet>
+                  <title>Register <strong>·</strong> Instagram </title>
+                </Helmet>
                 <div className="bg-white border p-[40px] pt-10 pb-6">
-                    <a href="#" className="flex justify-center mb-4">
+                    <div className="flex justify-center mb-4">
                         <img className="h-[51px]" src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="" />
-                    </a>
+                    </div>
                 <p className='text-[17px] font-semibold text-center text-[#8e8e8e] mb-6'>Sign up to see photos and videos from your friends.</p>
                     <Button>
                         <AiFillFacebook size={20} />
                         Log in with Facebook
                     </Button>
                     <Divider/> 
-
                   <Formik
                       initialValues={{
                         email: '',
