@@ -9,6 +9,7 @@ import { Formik, Form } from 'formik'
 import Button from 'components/Button'
 import Divider from 'components/Divider'
 import { useSelector } from 'react-redux'
+import Helmet from 'react-helmet'
 // import { LoginSchema } from 'validation'
 
 const Login = () => {
@@ -50,6 +51,9 @@ const Login = () => {
 
   return (
             <>
+             <Helmet>
+                  <title>Login <strong>·</strong> Instagram </title>
+                </Helmet>
               <div className="hidden md:block w-[380px] h-[580px] bg-logo-pattern relative bg-[length:468.32px_634.15px] bg-[top_left_-46px]">
                 <div className="w-[250px] h-[538px] absolute top-[27px] right-[18px]" ref={ref}>
                   <img className="w-full h-full absolute top-0 left-0 opacity-0 transition-opacity duration-700 ease-linear" src="https://www.instagram.com/static/images/homepage/screenshots/screenshot4.png/a4fd825e3d49.png" alt="" />
@@ -60,9 +64,9 @@ const Login = () => {
               </div>
               <div className="w-[350px] grid gap-y-3">
                       <div className="bg-white border p-[40px] pt-10 pb-6">
-                          <a href="#" className="flex justify-center mb-8">
+                          <div className="flex justify-center mb-8">
                             <img className="h-[51px]" src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="" />
-                          </a>
+                          </div>
 
                   <Formik
                   // validationSchema={LoginSchema}

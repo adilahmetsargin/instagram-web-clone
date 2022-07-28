@@ -1,12 +1,14 @@
-import Header from 'components/Header'
 import React from 'react'
+import Helmet from 'react-helmet'
 
 const Home = () => {
   return (
-      <>
-        <Header />
-        Home
-      </>
+    <div>
+      <Helmet>
+        <title>Instagram</title>
+      </Helmet>
+      Home Page
+    </div>
   )
 }
 
